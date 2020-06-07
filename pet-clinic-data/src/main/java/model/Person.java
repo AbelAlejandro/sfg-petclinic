@@ -1,4 +1,4 @@
-package abel.springframework.sfgpetclinic.model;
+package model;
 
 public class Person {
     private String firstName;
