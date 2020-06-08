@@ -33,14 +33,13 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
 					<goals>
-						<goal>install</goal>
+                        install
 					</goals>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 	<scm>
-		<developerConnection>scm:git:https://github.com/AbelAlejandro/sfg-petclinic.git</developerConnection>
-	  <tag>sfg-pet-clinic-0.0.1</tag>
+		<developerConnection>scm:git:git@github.com:AbelAlejandro/sfg-petclinic.git</developerConnection>
   </scm>
 </project>
