@@ -46,6 +46,16 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
         else return null;
     }
 
+    @Override
+    public Owner findById(Long id) {
+        return super.findById(id);
+    }
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
+    }
+
     private void saveOwnersPets(Owner owner) {
         owner.getPets().forEach(pet -> {
             if(pet.getPetType() != null) {
@@ -66,15 +76,5 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
     private void setPetIdFromService(Pet pet) {
         Pet savedPet = petService.save(pet);
         pet.setId(savedPet.getId());
-    }
-
-    @Override
-    public Owner findById(Long id) {
-        return super.findById(id);
-    }
-
-    @Override
-    public Owner findByLastName(String lastName) {
-        return null;
     }
 }
