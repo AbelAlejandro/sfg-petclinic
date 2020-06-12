@@ -1,8 +1,10 @@
 package abel.springframework.sfgpetclinic.bootstrap;
 
 import abel.springframework.sfgpetclinic.model.Owner;
+import abel.springframework.sfgpetclinic.model.PetType;
 import abel.springframework.sfgpetclinic.model.Vet;
 import abel.springframework.sfgpetclinic.services.OwnerService;
+import abel.springframework.sfgpetclinic.services.PetTypeService;
 import abel.springframework.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -11,14 +13,29 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+
+        PetType cat = new PetType();
+        cat.setName("Cat");
+
+        PetType catType = petTypeService.save(cat);
+
+        PetType dog = new PetType();
+        dog.setName("Dog");
+
+        PetType dogType = petTypeService.save(dog);
+
+        System.out.println("Loaded Pet Types....");
+
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
