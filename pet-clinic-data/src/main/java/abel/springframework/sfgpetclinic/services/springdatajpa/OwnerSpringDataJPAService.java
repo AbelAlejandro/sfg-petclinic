@@ -32,10 +32,7 @@ public class OwnerSpringDataJPAService implements OwnerService {
 
     @Override
     public Owner findById(Long aLong) {
-        if(ownerRepository.findById(aLong).isPresent()) {
-            return ownerRepository.findById(aLong).get();
-        }
-        return null;
+        return ownerRepository.findById(aLong).orElse(null);
     }
 
     @Override
