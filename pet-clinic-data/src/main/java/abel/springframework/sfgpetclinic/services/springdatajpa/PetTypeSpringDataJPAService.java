@@ -1,6 +1,5 @@
 package abel.springframework.sfgpetclinic.services.springdatajpa;
 
-import abel.springframework.sfgpetclinic.model.Owner;
 import abel.springframework.sfgpetclinic.model.PetType;
 import abel.springframework.sfgpetclinic.repositories.PetTypeRepository;
 import abel.springframework.sfgpetclinic.services.PetTypeService;
