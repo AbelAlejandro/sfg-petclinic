@@ -1,5 +1,6 @@
 package abel.springframework.sfgpetclinic.services.map;
 
+import abel.springframework.sfgpetclinic.exceptions.ServiceException;
 import abel.springframework.sfgpetclinic.model.Owner;
 import abel.springframework.sfgpetclinic.model.Pet;
 import abel.springframework.sfgpetclinic.services.OwnerService;
@@ -60,7 +61,7 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
         owner.getPets().forEach(pet -> {
             if(pet.getPetType() != null) {
                 savePetType(pet);
-            } else throw new RuntimeException("Pet Type is required");
+            } else throw new ServiceException(this.getClass().getName(), "Pet Type is required");
             if(pet.getId() == null) {
                 setPetIdFromService(pet);
             }

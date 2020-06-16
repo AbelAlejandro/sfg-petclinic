@@ -1,5 +1,6 @@
 package abel.springframework.sfgpetclinic.services.map;
 
+import abel.springframework.sfgpetclinic.exceptions.ServiceException;
 import abel.springframework.sfgpetclinic.model.BaseEntity;
 
 import java.util.*;
@@ -22,7 +23,7 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
             }
             map.put(object.getId(), object);
         } else {
-            throw new RuntimeException("Object can't be null");
+            throw new ServiceException(this.getClass().getName(), "Object can't be null");
         }
         return object;
     }
