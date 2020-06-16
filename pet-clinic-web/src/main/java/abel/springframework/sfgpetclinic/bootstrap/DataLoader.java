@@ -1,10 +1,7 @@
 package abel.springframework.sfgpetclinic.bootstrap;
 
 import abel.springframework.sfgpetclinic.model.*;
-import abel.springframework.sfgpetclinic.services.OwnerService;
-import abel.springframework.sfgpetclinic.services.PetTypeService;
-import abel.springframework.sfgpetclinic.services.SpecialtyService;
-import abel.springframework.sfgpetclinic.services.VetService;
+import abel.springframework.sfgpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,15 +13,17 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
     public DataLoader(OwnerService ownerService,
                       VetService vetService,
                       PetTypeService petTypeService,
-                      SpecialtyService specialtyService) {
+                      SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -86,6 +85,18 @@ public class DataLoader implements CommandLineRunner {
         fionasPet.setBirthDate(LocalDate.now().minusYears(2).minusMonths(3).minusWeeks(1).minusDays(5));
 
         ownerService.save(owner2);
+
+        Visit firstVisit = new Visit();
+        firstVisit.setPet(mikesPet);
+        firstVisit.setDate(LocalDate.now().minusDays(367));
+        firstVisit.setDescription("Castration");
+
+        Visit secondVisit = new Visit();
+        secondVisit.setPet(fionasPet);
+        secondVisit.setDate(LocalDate.now().minusDays(12));
+        secondVisit.setDescription("Broken tail");
+
+        System.out.println("Loaded Visits....");
 
         System.out.println("Loaded Owners....");
 

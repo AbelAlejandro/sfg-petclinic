@@ -3,9 +3,11 @@ package abel.springframework.sfgpetclinic.services.map;
 import abel.springframework.sfgpetclinic.exceptions.ServiceException;
 import abel.springframework.sfgpetclinic.model.Visit;
 import abel.springframework.sfgpetclinic.services.VisitService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
     @Override
     public Set<Visit> findAll() {
