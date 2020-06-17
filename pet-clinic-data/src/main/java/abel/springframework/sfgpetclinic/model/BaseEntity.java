@@ -20,7 +20,7 @@ public class BaseEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public static abstract class Builder<T extends BaseEntity,
+    public abstract static class Builder<T extends BaseEntity,
             B extends BaseEntity.Builder<T, B>> {
 
         protected T obj;
