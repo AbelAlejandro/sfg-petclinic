@@ -26,7 +26,7 @@ public class Person extends BaseEntity {
         this.lastName = lastName;
     }
 
-    public static abstract class Builder<T extends Person,
+    public abstract static class Builder<T extends Person,
             B extends Builder<T, B>> {
 
         public T obj;
