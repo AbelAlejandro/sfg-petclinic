@@ -11,7 +11,7 @@ public class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     public Long getId() {
         return id;
@@ -20,5 +20,24 @@ public class BaseEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    public static abstract class Builder<T extends BaseEntity,
+            B extends BaseEntity.Builder<T, B>> {
 
+        protected T obj;
+        protected B thisObj;
+
+        public Builder() {
+            obj = createObj();
+            thisObj = getThis();
+        }
+        public B withId(Long id) {
+            obj.id = id;
+            return thisObj;
+        }
+        public T build() {
+            return obj;
+        }
+        protected abstract T createObj();
+        protected abstract B getThis();
+    }
 }

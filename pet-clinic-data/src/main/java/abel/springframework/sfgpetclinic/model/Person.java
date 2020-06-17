@@ -6,9 +6,9 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class Person extends BaseEntity {
     @Column(name = "first_name") //Snake casing for column definition is default Hibernate behavior
-    private String firstName;
+    protected String firstName;
     @Column(name = "last_name")
-    private String lastName;
+    protected String lastName;
 
     public String getFirstName() {
         return firstName;
@@ -24,5 +24,30 @@ public class Person extends BaseEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public static abstract class Builder<T extends Person,
+            B extends Builder<T, B>> {
+
+        public T obj;
+        public B thisObj;
+
+        public Builder() {
+            obj = createObj();
+            thisObj = getThis();
+        }
+        public B withLastName(String lastName) {
+            obj.lastName = lastName;
+            return thisObj;
+        }
+        public B withFirstName(String firstName ) {
+            obj.firstName = firstName;
+            return thisObj;
+        }
+        public T build() {
+            return obj;
+        }
+        protected abstract T createObj();
+        protected abstract B getThis();
     }
 }
