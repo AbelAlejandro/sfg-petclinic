@@ -47,4 +47,37 @@ public class Owner extends Person {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
+
+    public static class Builder
+            extends Person.Builder<Owner, Owner.Builder> {
+
+        public Builder withTelephone(String telephone) {
+            obj.telephone = telephone;
+            return thisObj;
+        }
+
+        public Builder withCity(String city) {
+            obj.city = city;
+            return thisObj;
+        }
+
+        public Builder withAddress(String address) {
+            obj.address = address;
+            return thisObj;
+        }
+
+        public Builder withPets(Set<Pet> pets) {
+            if(pets == null) pets = new HashSet<>();
+            obj.pets = pets;
+            return thisObj;
+        }
+
+        protected Owner createObj() {
+            return new Owner();
+        }
+
+        protected Builder getThis() {
+            return this;
+        }
+    }
 }
