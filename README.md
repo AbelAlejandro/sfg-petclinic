@@ -1,2 +1,2 @@
-# sfg-petclinic
-SFG Pet Clinic
+# Spring based Pet Clinic management app
+
