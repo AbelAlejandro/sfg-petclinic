@@ -9,6 +9,8 @@ import abel.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -63,6 +65,12 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
             }
         }
         throw new ServiceException(this.getClass().getName(), "Owner not found");
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String anyString) {
+        //TODO
+        return Collections.emptyList();
     }
 
     private void saveOwnersPets(Owner owner) {
