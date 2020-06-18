@@ -83,6 +83,7 @@ public class DataLoader implements CommandLineRunner {
         owner2.setTelephone("43546456");
 
         Pet fionasPet = new Pet();
+        fionasPet.setName("Luigi");
         fionasPet.setPetType(savedDogType);
         fionasPet.setOwner(owner2);
         fionasPet.setBirthDate(LocalDate.now().minusYears(2).minusMonths(3).minusWeeks(1).minusDays(5));
