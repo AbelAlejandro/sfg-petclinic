@@ -10,17 +10,16 @@ import org.mockito.Mock;
 import org.mockito.internal.util.collections.Sets;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Collections;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -51,7 +50,6 @@ class OwnerControllerTest {
             .withLastName(LAST_NAME_2)
             .build();
     Set<Owner> OWNER_SET = Sets.newSet(OWNER, OWNER_2);
-    Long OWNER_ID;
 
     @Mock
     OwnerService service;
@@ -63,6 +61,8 @@ class OwnerControllerTest {
 
     @BeforeEach
     void setUp() {
+        OWNER.setId(1L);
+        OWNER_2.setId(2L);
         mockMvc = MockMvcBuilders
                 .standaloneSetup(controller)
                 .build();
@@ -83,5 +83,15 @@ class OwnerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("unimplemented"));
         verifyNoInteractions(service);
+    }
+
+    @Test
+    void showOwner() throws Exception {
+        when(service.findById(anyLong())).thenReturn(OWNER);
+
+        mockMvc.perform(get("/owners/1"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/ownerDetails"))
+                .andExpect(model().attribute("owner", hasProperty("id", is(1L))));
     }
 }
