@@ -16,7 +16,7 @@
 	<artifactId>sfg-pet-clinic</artifactId>
 	<version>0.0.1</version>
 	<name>sfg-pet-clinic</name>
-	<description>SFG Pet Clinic Project</description>
+	<description>Spring 5 Pet Clinic Project</description>
 
 	<properties>
 		<java.version>1.8</java.version>
