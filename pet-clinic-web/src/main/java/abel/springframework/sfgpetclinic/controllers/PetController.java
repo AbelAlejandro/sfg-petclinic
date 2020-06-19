@@ -2,8 +2,6 @@ package abel.springframework.sfgpetclinic.controllers;
 
 import abel.springframework.sfgpetclinic.model.Owner;
 import abel.springframework.sfgpetclinic.model.PetType;
-import abel.springframework.sfgpetclinic.repositories.OwnerRepository;
-import abel.springframework.sfgpetclinic.repositories.PetRepository;
 import abel.springframework.sfgpetclinic.services.OwnerService;
 import abel.springframework.sfgpetclinic.services.PetService;
 import abel.springframework.sfgpetclinic.services.PetTypeService;
@@ -23,8 +21,7 @@ public class PetController {
     private final OwnerService ownerService;
     private final PetTypeService petTypeService;
 
-    public PetController(PetRepository pets, PetService petService, OwnerRepository owners, OwnerService ownerService, PetTypeService petTypeService) {
-        this.petService = petService;
+    public PetController(OwnerService ownerService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.petTypeService = petTypeService;
     }

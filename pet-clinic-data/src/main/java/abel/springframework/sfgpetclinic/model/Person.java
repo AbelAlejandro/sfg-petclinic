@@ -40,7 +40,7 @@ public class Person extends BaseEntity {
             obj.lastName = lastName;
             return thisObj;
         }
-        public B withFirstName(String firstName ) {
+        public B withFirstName(String firstName) {
             obj.firstName = firstName;
             return thisObj;
         }
