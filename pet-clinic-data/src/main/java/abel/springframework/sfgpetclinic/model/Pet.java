@@ -64,4 +64,36 @@ public class Pet extends BaseEntity {
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
+
+    public static class Builder
+            extends BaseEntity.Builder<Pet, Pet.Builder> {
+
+        public Pet.Builder withName(String name) {
+            obj.name = name;
+            return thisObj;
+        }
+
+        public Pet.Builder withPetType(PetType petType) {
+            obj.petType = petType;
+            return thisObj;
+        }
+
+        public Pet.Builder withOwner(Owner owner) {
+            obj.owner = owner;
+            return thisObj;
+        }
+
+        public Pet.Builder withBirthDate(LocalDate birthDate) {
+            obj.birthDate = birthDate;
+            return thisObj;
+        }
+
+        protected Pet createObj() {
+            return new Pet();
+        }
+
+        protected Pet.Builder getThis() {
+            return this;
+        }
+    }
 }

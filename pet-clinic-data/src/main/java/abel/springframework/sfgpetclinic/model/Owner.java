@@ -16,6 +16,18 @@ public class Owner extends Person {
     @Column(name = "telephone")
     private String telephone;
 
+    public Owner(String address, String city, Set<Pet> pets, String telephone) {
+        this.address = address;
+        this.city = city;
+        if(pets != null) {
+            this.pets = pets;
+        }
+        this.telephone = telephone;
+    }
+
+    public Owner() {
+    }
+
     public String getAddress() {
         return address;
     }
@@ -33,6 +45,7 @@ public class Owner extends Person {
     }
 
     public Set<Pet> getPets() {
+        if(this.pets == null) this.pets = new HashSet<>();
         return pets;
     }
 
@@ -46,6 +59,28 @@ public class Owner extends Person {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public Pet getPet(String name) {
+        return getPet(name, false);
+    }
+
+    public Pet getPet(String name, boolean ignoreNew) {
+        name = name.toLowerCase();
+        for (Pet pet : pets) {
+            if (!ignoreNew || !pet.isNew()) {
+                String compName = pet.getName();
+                compName = compName.toLowerCase();
+                if (compName.equals(name)) {
+                    return pet;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void addPet(Pet pet) {
+        this.pets.add(pet);
     }
 
     public static class Builder
@@ -67,13 +102,15 @@ public class Owner extends Person {
         }
 
         public Builder withPets(Set<Pet> pets) {
-            if(pets == null) pets = new HashSet<>();
-            obj.pets = pets;
+            if(pets != null) obj.pets = pets;
+            else obj.pets = new HashSet<>();
             return thisObj;
         }
 
         protected Owner createObj() {
-            return new Owner();
+            Owner owner = new Owner();
+            owner.pets = new HashSet<>();
+            return owner;
         }
 
         protected Builder getThis() {

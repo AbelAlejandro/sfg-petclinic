@@ -3,6 +3,8 @@ package abel.springframework.sfgpetclinic.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "types")
@@ -31,26 +33,20 @@ public class PetType extends BaseEntity {
         return name;
     }
 
-    public abstract static class Builder<T extends PetType,
-            B extends PetType.Builder<T, B>> {
+    public static class Builder
+            extends BaseEntity.Builder<PetType, PetType.Builder> {
 
-        public T obj;
-        public B thisObj;
-
-        public Builder() {
-            obj = createObj();
-            thisObj = getThis();
-        }
-
-        public B withName(String name) {
+        public PetType.Builder withName(String name) {
             obj.name = name;
             return thisObj;
         }
 
-        public T build() {
-            return obj;
+        protected PetType createObj() {
+            return new PetType();
         }
-        protected abstract T createObj();
-        protected abstract B getThis();
+
+        protected PetType.Builder getThis() {
+            return this;
+        }
     }
 }
