@@ -1,21 +1,14 @@
 package abel.springframework.sfgpetclinic.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "types")
-public class PetType extends BaseEntity {
-    public PetType(Long id, String name) {
-        super(id);
-        this.name = name;
-    }
-
-    public PetType() {
-    }
+public class PetType implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
 
     @Column(name = "name")
     protected String name;
@@ -28,25 +21,28 @@ public class PetType extends BaseEntity {
         this.name = name;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public PetType(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public PetType() {
+    }
+
+    public boolean isNew() {
+        return this.id == null;
+    }
+
     @Override
     public String toString() {
         return name;
-    }
-
-    public static class Builder
-            extends BaseEntity.Builder<PetType, PetType.Builder> {
-
-        public PetType.Builder withName(String name) {
-            obj.name = name;
-            return thisObj;
-        }
-
-        protected PetType createObj() {
-            return new PetType();
-        }
-
-        protected PetType.Builder getThis() {
-            return this;
-        }
     }
 }

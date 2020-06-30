@@ -31,7 +31,7 @@ class OwnerSpringDataJPAServiceTest {
     private static final String TELEPHONE_2 = "6725286";
     private static final String FIRST_NAME_2 = "Al";
     private static final String LAST_NAME_2 = "Berto";
-    Owner OWNER = new Owner.Builder()
+    Owner OWNER = new Owner.Builder() //TODO: Implement Builder pattern
             .withAddress(ADDRESS)
             .withCity(CITY)
             .withPets(Collections.emptySet())
@@ -39,7 +39,7 @@ class OwnerSpringDataJPAServiceTest {
             .withFirstName(FIRST_NAME)
             .withLastName(LAST_NAME)
             .build();
-    Owner OWNER_2 = new Owner.Builder()
+    Owner OWNER_2 = new Owner.Builder() //TODO: Implement Builder pattern
             .withAddress(ADDRESS_2)
             .withCity(CITY)
             .withPets(Collections.emptySet())

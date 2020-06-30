@@ -33,7 +33,7 @@ public class OwnerController {
 
     @GetMapping("/find")
     public String findOwners(Model model) {
-        model.addAttribute("owner", new Owner.Builder().build());
+        model.addAttribute("owner", new Owner()); //TODO: Implement Builder pattern
         return OWNERS_FIND_OWNERS_VIEW;
     }
 
@@ -64,7 +64,7 @@ public class OwnerController {
 
     @GetMapping("/new")
     public String initCreationForm(Model model) {
-        model.addAttribute("owner", new Owner.Builder().build());
+        model.addAttribute("owner", new Owner()); //TODO: Implement Builder pattern
         return CREATE_OR_UPDATE_OWNER_VIEW;
     }
 

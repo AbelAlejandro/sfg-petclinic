@@ -1,12 +1,20 @@
 package abel.springframework.sfgpetclinic.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "owners")
-public class Owner extends Person {
+public class Owner implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+    @Column(name = "first_name") //Snake casing for column definition is default Hibernate behavior
+    protected String firstName;
+    @Column(name = "last_name")
+    protected String lastName;
     @Column(name = "address")
     private String address;
     @Column(name = "city")
@@ -26,6 +34,34 @@ public class Owner extends Person {
     }
 
     public Owner() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isNew() {
+        return this.id == null;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -81,40 +117,5 @@ public class Owner extends Person {
 
     public void addPet(Pet pet) {
         this.pets.add(pet);
-    }
-
-    public static class Builder
-            extends Person.Builder<Owner, Owner.Builder> {
-
-        public Builder withTelephone(String telephone) {
-            obj.telephone = telephone;
-            return thisObj;
-        }
-
-        public Builder withCity(String city) {
-            obj.city = city;
-            return thisObj;
-        }
-
-        public Builder withAddress(String address) {
-            obj.address = address;
-            return thisObj;
-        }
-
-        public Builder withPets(Set<Pet> pets) {
-            if(pets != null) obj.pets = pets;
-            else obj.pets = new HashSet<>();
-            return thisObj;
-        }
-
-        protected Owner createObj() {
-            Owner owner = new Owner();
-            owner.pets = new HashSet<>();
-            return owner;
-        }
-
-        protected Builder getThis() {
-            return this;
-        }
     }
 }

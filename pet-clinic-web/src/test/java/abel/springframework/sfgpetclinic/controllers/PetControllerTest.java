@@ -36,16 +36,16 @@ class PetControllerTest {
     private static final String TELEPHONE = "23423524524";
     private static final String FIRST_NAME = "Carlos";
     private static final String LAST_NAME = "Bala";
-    private static final PetType PET_TYPE = new PetType.Builder().withName("Cat").build();
-    private static final PetType PET_TYPE_2 = new PetType.Builder().withName("Dog").build();
+    private static final PetType PET_TYPE = new PetType.Builder().withName("Cat").build(); //TODO: Implement Builder pattern
+    private static final PetType PET_TYPE_2 = new PetType.Builder().withName("Dog").build(); //TODO: Implement Builder pattern
     private static final Set<PetType> PET_TYPE_SET = Sets.newSet(PET_TYPE, PET_TYPE_2);
-    private static final Pet PET = new Pet.Builder()
+    private static final Pet PET = new Pet.Builder() //TODO: Implement Builder pattern
             .withPetType(PET_TYPE)
             .withBirthDate(LocalDate.now())
             .withName("Nodo")
             .withId(1L)
             .build();
-    private static final Owner OWNER = new Owner.Builder()
+    private static final Owner OWNER = new Owner.Builder() //TODO: Implement Builder pattern
             .withAddress(ADDRESS)
             .withCity(CITY)
             .withPets(Collections.singleton(PET))

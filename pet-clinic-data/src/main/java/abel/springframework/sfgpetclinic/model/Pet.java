@@ -1,13 +1,18 @@
 package abel.springframework.sfgpetclinic.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "pets")
-public class Pet extends BaseEntity {
+public class Pet implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+
     @Column(name = "name")
     private String name;
 
@@ -25,8 +30,7 @@ public class Pet extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private Set<Visit> visits = new HashSet<>();
 
-    public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
-        super(id);
+    public Pet(String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
         this.name = name;
         this.petType = petType;
         this.owner = owner;
@@ -35,6 +39,18 @@ public class Pet extends BaseEntity {
     }
 
     public Pet() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isNew() {
+        return this.id == null;
     }
 
     public Set<Visit> getVisits() {
@@ -77,34 +93,44 @@ public class Pet extends BaseEntity {
         this.birthDate = birthDate;
     }
 
-    public static class Builder
-            extends BaseEntity.Builder<Pet, Pet.Builder> {
+    public static class Builder {
+        protected Long id;
+        private String name;
+        private PetType petType;
+        private Owner owner;
+        private LocalDate birthDate;
+        private Set<Visit> visits;
 
-        public Pet.Builder withName(String name) {
-            obj.name = name;
-            return thisObj;
+        public Builder() {
         }
 
-        public Pet.Builder withPetType(PetType petType) {
-            obj.petType = petType;
-            return thisObj;
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
         }
 
-        public Pet.Builder withOwner(Owner owner) {
-            obj.owner = owner;
-            return thisObj;
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
         }
 
-        public Pet.Builder withBirthDate(LocalDate birthDate) {
-            obj.birthDate = birthDate;
-            return thisObj;
+        public Builder withPetType(PetType petType) {
+            this.petType = petType;
+            return this;
         }
 
-        protected Pet createObj() {
-            return new Pet();
+        public Builder withOwner(Owner owner) {
+            this.owner = owner;
+            return this;
         }
 
-        protected Pet.Builder getThis() {
+        public Builder withBirthDate(LocalDate birthDate) {
+            this.birthDate = birthDate;
+            return this;
+        }
+
+        public Builder withVisits(Set<Visit> visits) {
+            this.visits = visits;
             return this;
         }
     }
