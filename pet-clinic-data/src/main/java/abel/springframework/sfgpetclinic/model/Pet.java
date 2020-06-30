@@ -94,7 +94,7 @@ public class Pet implements Serializable {
     }
 
     public static class Builder {
-        protected Long id;
+        private Long id;
         private String name;
         private PetType petType;
         private Owner owner;
@@ -132,6 +132,17 @@ public class Pet implements Serializable {
         public Builder withVisits(Set<Visit> visits) {
             this.visits = visits;
             return this;
+        }
+
+        public Pet build() {
+            Pet pet = new Pet();
+            pet.id = this.id;
+            pet.name = this.name;
+            pet.petType = this.petType;
+            pet.owner = this.owner;
+            pet.birthDate = this.birthDate;
+            pet.visits = this.visits;
+            return pet;
         }
     }
 }

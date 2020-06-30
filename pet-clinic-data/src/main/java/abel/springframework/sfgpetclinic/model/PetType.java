@@ -45,4 +45,30 @@ public class PetType implements Serializable {
     public String toString() {
         return name;
     }
+
+    public static class Builder {
+        private Long id;
+        private String name;
+
+        public Builder() {
+        }
+
+        public PetType.Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public PetType build() {
+            PetType petType = new PetType();
+            petType.id = this.id;
+            petType.name = this.name;
+
+            return petType;
+        }
+    }
 }

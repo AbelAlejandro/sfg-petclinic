@@ -118,4 +118,63 @@ public class Owner implements Serializable {
     public void addPet(Pet pet) {
         this.pets.add(pet);
     }
+
+    public static class Builder {
+        private Long id;
+        private String firstName;
+        private String lastName;
+        private String address;
+        private String city;
+        private Set<Pet> pets;
+        private String telephone;
+
+        public Builder() {
+        }
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder withLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder withAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder withPets(Set<Pet> pets) {
+            this.pets = pets;
+            return this;
+        }
+
+        public Builder withCity(String city) {
+            this.city = city;
+            return this;
+        }
+
+        public Builder withTelephone(String telephone) {
+            this.telephone = telephone;
+            return this;
+        }
+
+        public Owner build() {
+            Owner owner = new Owner();
+            owner.id = this.id;
+            owner.firstName = this.firstName;
+            owner.lastName = this.lastName;
+            owner.address = this.address;
+            owner.pets = this.pets;
+            owner.city = this.city;
+            return owner;
+        }
+    }
 }
