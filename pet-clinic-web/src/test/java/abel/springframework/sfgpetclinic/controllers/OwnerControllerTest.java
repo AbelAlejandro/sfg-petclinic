@@ -7,14 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.internal.util.collections.Sets;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Set;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -40,7 +38,7 @@ class OwnerControllerTest {
     private static final String TELEPHONE_2 = "6725286";
     private static final String FIRST_NAME_2 = "Al";
     private static final String LAST_NAME_2 = "Berto";
-    Owner OWNER = new Owner.Builder() //TODO: Implement Builder pattern
+    Owner OWNER = new Owner.Builder()
             .withAddress(ADDRESS)
             .withCity(CITY)
             .withPets(Collections.emptySet())
@@ -48,7 +46,7 @@ class OwnerControllerTest {
             .withFirstName(FIRST_NAME)
             .withLastName(LAST_NAME)
             .build();
-    Owner OWNER_2 = new Owner.Builder() //TODO: Implement Builder pattern
+    Owner OWNER_2 = new Owner.Builder()
             .withAddress(ADDRESS_2)
             .withCity(CITY)
             .withPets(Collections.emptySet())
@@ -56,7 +54,6 @@ class OwnerControllerTest {
             .withFirstName(FIRST_NAME_2)
             .withLastName(LAST_NAME_2)
             .build();
-    Set<Owner> OWNER_SET = Sets.newSet(OWNER, OWNER_2);
 
     @Mock
     OwnerService ownerService;
@@ -141,7 +138,7 @@ class OwnerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name(CREATE_OR_UPDATE_OWNER))
                 .andExpect(model().attributeExists("owner"));
-        verifyZeroInteractions(ownerService);
+        verifyNoMoreInteractions(ownerService);
     }
 
     @Test
