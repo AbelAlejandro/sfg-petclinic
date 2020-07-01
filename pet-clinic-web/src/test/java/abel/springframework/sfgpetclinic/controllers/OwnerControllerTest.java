@@ -39,21 +39,23 @@ class OwnerControllerTest {
     private static final String FIRST_NAME_2 = "Al";
     private static final String LAST_NAME_2 = "Berto";
     Owner OWNER = new Owner.Builder()
-            .withAddress(ADDRESS)
-            .withCity(CITY)
-            .withPets(Collections.emptySet())
-            .withTelephone(TELEPHONE)
-            .withFirstName(FIRST_NAME)
-            .withLastName(LAST_NAME)
-            .build();
+        .withId(1L)
+        .withAddress(ADDRESS)
+        .withCity(CITY)
+        .withPets(Collections.emptySet())
+        .withTelephone(TELEPHONE)
+        .withFirstName(FIRST_NAME)
+        .withLastName(LAST_NAME)
+        .build();
     Owner OWNER_2 = new Owner.Builder()
-            .withAddress(ADDRESS_2)
-            .withCity(CITY)
-            .withPets(Collections.emptySet())
-            .withTelephone(TELEPHONE_2)
-            .withFirstName(FIRST_NAME_2)
-            .withLastName(LAST_NAME_2)
-            .build();
+        .withId(2L)
+        .withAddress(ADDRESS_2)
+        .withCity(CITY)
+        .withPets(Collections.emptySet())
+        .withTelephone(TELEPHONE_2)
+        .withFirstName(FIRST_NAME_2)
+        .withLastName(LAST_NAME_2)
+        .build();
 
     @Mock
     OwnerService ownerService;
@@ -65,8 +67,6 @@ class OwnerControllerTest {
 
     @BeforeEach
     void setUp() {
-        OWNER.setId(1L);
-        OWNER_2.setId(2L);
         mockMvc = MockMvcBuilders
                 .standaloneSetup(controller)
                 .build();
