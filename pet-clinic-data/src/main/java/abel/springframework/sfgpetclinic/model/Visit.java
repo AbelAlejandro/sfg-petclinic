@@ -55,4 +55,43 @@ public class Visit implements Serializable {
     public void setPet(Pet pet) {
         this.pet = pet;
     }
+
+    public static class Builder {
+        private Long id;
+        private String description;
+        private LocalDate date;
+        private Pet pet;
+
+        public Builder() {
+        }
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder withDate(LocalDate date) {
+            this.date = date;
+            return this;
+        }
+
+        public Builder withPet(Pet pet) {
+            this.pet = pet;
+            return this;
+        }
+
+        public Visit build() {
+            Visit visit = new Visit();
+            visit.id = this.id;
+            visit.description = this.description;
+            visit.date = this.date;
+            visit.pet = this.pet;
+            return visit;
+        }
+    }
 }

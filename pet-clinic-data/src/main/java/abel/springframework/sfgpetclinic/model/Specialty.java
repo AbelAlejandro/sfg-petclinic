@@ -32,4 +32,29 @@ public class Specialty implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public static class Builder {
+        private Long id;
+        private String description;
+
+        public Builder() {
+        }
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Specialty build() {
+            Specialty specialty = new Specialty();
+            specialty.id = this.id;
+            specialty.description = this.description;
+            return specialty;
+        }
+    }
 }

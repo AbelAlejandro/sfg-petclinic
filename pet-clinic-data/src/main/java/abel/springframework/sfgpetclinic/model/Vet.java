@@ -58,4 +58,43 @@ public class Vet implements Serializable {
     public void setSpecialties(Set<Specialty> specialties) {
         this.specialties = specialties;
     }
+
+    public static class Builder {
+        private Long id;
+        private String firstName;
+        private String lastName;
+        private Set<Specialty> specialties;
+
+        public Builder() {
+        }
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder withLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder withSpecialties(Set<Specialty> specialties) {
+            this.specialties = specialties;
+            return this;
+        }
+
+        public Vet build() {
+            Vet vet = new Vet();
+            vet.id = this.id;
+            vet.firstName = this.firstName;
+            vet.lastName = this.lastName;
+            vet.specialties = this.specialties;
+            return vet;
+        }
+    }
 }
