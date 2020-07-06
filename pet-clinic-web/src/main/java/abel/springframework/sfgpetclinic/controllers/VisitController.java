@@ -13,13 +13,12 @@ import java.util.Map;
 
 @Controller
 class VisitController {
-
-    private final VisitService visitService;
     private final PetService petService;
+    private final VisitService visitService;
 
-    public VisitController(VisitService visitService, PetService petService) {
-        this.visitService = visitService;
+    public VisitController(PetService petService, VisitService visitService) {
         this.petService = petService;
+        this.visitService = visitService;
     }
 
     @InitBinder
