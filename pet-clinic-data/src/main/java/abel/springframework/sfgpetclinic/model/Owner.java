@@ -172,6 +172,7 @@ public class Owner implements Serializable {
             owner.firstName = this.firstName;
             owner.lastName = this.lastName;
             owner.address = this.address;
+            owner.telephone = this.telephone;
             owner.pets = this.pets;
             owner.city = this.city;
             return owner;
