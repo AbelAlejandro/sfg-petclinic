@@ -1,5 +1,7 @@
 package abel.springframework.sfgpetclinic.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,6 +27,7 @@ public class Pet implements Serializable {
     private Owner owner;
 
     @Column(name = "birthDate")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
