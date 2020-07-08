@@ -3,6 +3,7 @@ package abel.springframework.sfgpetclinic.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -116,6 +117,7 @@ public class Owner implements Serializable {
     }
 
     public void addPet(Pet pet) {
+        if(this.pets == null) this.pets = new HashSet<>();
         this.pets.add(pet);
     }
 

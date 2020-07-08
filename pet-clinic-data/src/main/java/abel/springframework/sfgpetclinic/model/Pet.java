@@ -57,11 +57,13 @@ public class Pet implements Serializable {
     }
 
     public Set<Visit> getVisits() {
+        if(this.visits == null) this.visits = new HashSet<>();
         return visits;
     }
 
-    public void setVisits(Set<Visit> visits) {
-        this.visits = visits;
+    public Set<Visit> setVisits(Set<Visit> visits) {
+        if(this.visits == null) this.visits = new HashSet<>();
+        return visits;
     }
 
     public String getName() {
@@ -94,6 +96,11 @@ public class Pet implements Serializable {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public void add(Visit visit) {
+        if(this.visits == null) this.visits = new HashSet<>();
+        this.visits.add(visit);
     }
 
     public static class Builder {
