@@ -63,6 +63,7 @@ public class Pet implements Serializable {
 
     public Set<Visit> setVisits(Set<Visit> visits) {
         if(this.visits == null) this.visits = new HashSet<>();
+        this.visits.addAll(visits);
         return visits;
     }
 

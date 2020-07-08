@@ -1,7 +1,6 @@
 package abel.springframework.sfgpetclinic.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
 public class HealthCheck implements Serializable {
     public enum Status {
