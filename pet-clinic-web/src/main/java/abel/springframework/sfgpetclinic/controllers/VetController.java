@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Set;
+import java.util.List;
 
 @Controller
 public class VetController {
@@ -24,7 +24,8 @@ public class VetController {
     }
 
     @GetMapping("/api/vets")
-    public @ResponseBody Set<Vet> getVetsJson() {
+    public @ResponseBody
+    List<Vet> getVetsJson() {
         return vetService.findAll();
     }
 }

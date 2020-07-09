@@ -1,9 +1,9 @@
 package abel.springframework.sfgpetclinic.services;
 
-import java.util.Set;
+import java.util.List;
 
 public interface CrudService<T, ID> {
-    Set<T> findAll();
+    List<T> findAll();
     T findById(ID id);
     T save(T object);
     void delete(T object);

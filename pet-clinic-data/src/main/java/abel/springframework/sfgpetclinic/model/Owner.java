@@ -3,7 +3,6 @@ package abel.springframework.sfgpetclinic.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity

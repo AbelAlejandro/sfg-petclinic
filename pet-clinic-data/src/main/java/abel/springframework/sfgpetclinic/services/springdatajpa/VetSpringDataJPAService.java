@@ -6,8 +6,8 @@ import abel.springframework.sfgpetclinic.services.VetService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Profile("springdatajpa")
@@ -19,10 +19,8 @@ public class VetSpringDataJPAService implements VetService {
     }
 
     @Override
-    public Set<Vet> findAll() {
-        Set<Vet> vets = new HashSet<>();
-        vetRepository.findAll().forEach(vets::add);
-        return vets;
+    public List<Vet> findAll() {
+        return new ArrayList<>(vetRepository.findAll());
     }
 
     @Override

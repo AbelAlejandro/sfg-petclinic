@@ -2,15 +2,16 @@ package abel.springframework.sfgpetclinic.services.springdatajpa;
 
 import abel.springframework.sfgpetclinic.model.Owner;
 import abel.springframework.sfgpetclinic.repositories.OwnerRepository;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.internal.util.collections.Sets;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -47,7 +48,7 @@ class OwnerSpringDataJPAServiceTest {
             .withFirstName(FIRST_NAME_2)
             .withLastName(LAST_NAME_2)
             .build();
-    Set<Owner> OWNER_SET = Sets.newSet(OWNER, OWNER_2);
+    List<Owner> OWNER_LIST = Lists.newArrayList(OWNER, OWNER_2);
     Long OWNER_ID;
 
     @Mock
@@ -70,10 +71,10 @@ class OwnerSpringDataJPAServiceTest {
 
     @Test
     void findAll() {
-        when(ownerRepository.findAll()).thenReturn(OWNER_SET);
-        Set<Owner> owners = service.findAll();
-        assertEquals(owners.size(), OWNER_SET.size());
-        assertEquals(owners, OWNER_SET);
+        when(ownerRepository.findAll()).thenReturn(OWNER_LIST);
+        List<Owner> owners = service.findAll();
+        assertEquals(owners.size(), OWNER_LIST.size());
+        assertEquals(owners, OWNER_LIST);
     }
 
     @Test

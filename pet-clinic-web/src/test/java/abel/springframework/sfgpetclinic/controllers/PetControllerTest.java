@@ -6,19 +6,19 @@ import abel.springframework.sfgpetclinic.model.PetType;
 import abel.springframework.sfgpetclinic.services.OwnerService;
 import abel.springframework.sfgpetclinic.services.PetService;
 import abel.springframework.sfgpetclinic.services.PetTypeService;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.internal.util.collections.Sets;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Set;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -38,7 +38,7 @@ class PetControllerTest {
     private static final String LAST_NAME = "Bala";
     private static final PetType PET_TYPE = new PetType.Builder().withName("Cat").build();
     private static final PetType PET_TYPE_2 = new PetType.Builder().withName("Dog").build();
-    private static final Set<PetType> PET_TYPE_SET = Sets.newSet(PET_TYPE, PET_TYPE_2);
+    private static final List<PetType> PET_TYPES = Lists.newArrayList(PET_TYPE, PET_TYPE_2);
     private static final Pet PET = new Pet.Builder()
         .withPetType(PET_TYPE)
         .withBirthDate(LocalDate.now())
@@ -84,7 +84,7 @@ class PetControllerTest {
     @Test
     void initCreationForm() throws Exception {
         when(ownerService.findById(anyLong())).thenReturn(OWNER);
-        when(petTypeService.findAll()).thenReturn(PET_TYPE_SET);
+        when(petTypeService.findAll()).thenReturn(PET_TYPES);
 
         mockMvc.perform(get(NEW_PET_REQUEST))
                 .andExpect(status().isOk())
@@ -96,7 +96,7 @@ class PetControllerTest {
     @Test
     void processCreationForm() throws Exception {
         when(ownerService.findById(anyLong())).thenReturn(OWNER);
-        when(petTypeService.findAll()).thenReturn(PET_TYPE_SET);
+        when(petTypeService.findAll()).thenReturn(PET_TYPES);
 
         mockMvc.perform(post(NEW_PET_REQUEST))
                 .andExpect(status().is3xxRedirection())
@@ -108,7 +108,7 @@ class PetControllerTest {
     @Test
     void initUpdateForm() throws Exception {
         when(ownerService.findById(anyLong())).thenReturn(OWNER);
-        when(petTypeService.findAll()).thenReturn(PET_TYPE_SET);
+        when(petTypeService.findAll()).thenReturn(PET_TYPES);
         when(petService.findById(anyLong())).thenReturn(PET);
 
         mockMvc.perform(get(EDIT_PET_REQUEST))
@@ -121,7 +121,7 @@ class PetControllerTest {
     @Test
     void processUpdateForm() throws Exception {
         when(ownerService.findById(anyLong())).thenReturn(OWNER);
-        when(petTypeService.findAll()).thenReturn(PET_TYPE_SET);
+        when(petTypeService.findAll()).thenReturn(PET_TYPES);
 
         mockMvc.perform(post(EDIT_PET_REQUEST))
                 .andExpect(status().is3xxRedirection())

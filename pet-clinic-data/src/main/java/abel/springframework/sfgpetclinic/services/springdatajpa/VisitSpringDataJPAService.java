@@ -6,8 +6,8 @@ import abel.springframework.sfgpetclinic.services.VisitService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Profile("springdatajpa")
@@ -19,10 +19,8 @@ public class VisitSpringDataJPAService implements VisitService {
     }
 
     @Override
-    public Set<Visit> findAll() {
-        Set<Visit> visits = new HashSet<>();
-        visitRepository.findAll().forEach(visits::add);
-        return visits;
+    public List<Visit> findAll() {
+        return new ArrayList<>(visitRepository.findAll());
     }
 
     @Override

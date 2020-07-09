@@ -7,8 +7,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.util.List;
 import java.util.Set;
 
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,7 +32,7 @@ class VetControllerTest {
   private static final Vet VET_2 = new Vet.Builder()
       .withId(2)
       .build();
-  private static final Set<Vet> VET_SET = Sets.newSet(VET_1, VET_2);
+  private static final List<Vet> VET_SET = Lists.newArrayList(VET_1, VET_2);
 
   @Mock
   VetService vetService;
